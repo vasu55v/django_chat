@@ -72,7 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-ASGI_APPLICATION = 'core.asgi.application'  #added
+ASGI_APPLICATION = 'core.asgi.application'
 
 
 
@@ -84,6 +84,19 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+
+# Base URL to access static files
+STATIC_URL = '/static/'
+
+# Directory where Django collects all static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Additional directories to look for static files
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

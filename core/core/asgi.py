@@ -7,21 +7,23 @@ For more information on this file, see
 https://docs.djangoproject.com/en/4.2/howto/deployment/asgi/
 """
 
+# import os
+
+# from django.core.asgi import get_asgi_application
+
+# from channels.routing import ProtocolTypeRouter
 import os
 
+from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
 
-from channels.routing import ProtocolTypeRouter
-
-import chat.routing #added
-
-
+import chat.routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
 application = ProtocolTypeRouter({
-    'http':get_asgi_application(),#added
-     'websocket': URLRouter(#added
-      chat.routing.websocket_urlpatterns#added
+  'http': get_asgi_application(),
+  'websocket': URLRouter(
+      chat.routing.websocket_urlpatterns
     ),
 })
