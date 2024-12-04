@@ -67,12 +67,12 @@ function connect() {
 
     switch (data.type) {
       case "chat_message":
-        chatLog.value += data.message + "\n";
-        break;
+          chatLog.value += data.user + ": " + data.message + "\n";  // new
+          break;
       default:
-        console.error("unknown message type!");
-        break;
-    }
+          console.error("Unknown message type!");
+          break;
+  }
     chatLog.scrollTop = chatLog.scrollHeight;
   };
 

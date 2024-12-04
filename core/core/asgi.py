@@ -19,11 +19,16 @@ from django.core.asgi import get_asgi_application
 
 import chat.routing
 
+from channels.auth import AuthMiddlewareStack  # new import
+
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
 application = ProtocolTypeRouter({
   'http': get_asgi_application(),
-  'websocket': URLRouter(
+  'websocket':AuthMiddlewareStack(  #new added
+      URLRouter(
       chat.routing.websocket_urlpatterns
-    ),
+    )
+  ),
 })
